@@ -21,22 +21,36 @@ public class Principal {
         // Cambiamos el estado y guardamos la instantánea
         originador.setDemanda(d);
         cuidador.agregarMemento(originador.guardarEstado());
-
+        System.out.println("El credito se encuentra restaurado: " + originador.getDemanda().getEstado());
         d = new Demanda();
         d.setNumeroCredito("23002");
         d.setMonto(3300);
         d.setEstado("citacion");
+          System.out.println("El credito : " + originador.getDemanda().getEstado());
         // Cambiamos el estado nuevamente y guardamos otra instantánea
         originador.setDemanda(d);
         cuidador.agregarMemento(originador.guardarEstado());
         d = new Demanda();
-        d.setNumeroCredito("230032");
+        d.setNumeroCredito("23002");
         d.setMonto(3300);
-        d.setEstado("citacion");
+        d.setEstado("embargo");
         cuidador.agregarMemento(originador.guardarEstado());
+            System.out.println("El credito : " + originador.getDemanda().getEstado());
+         d = new Demanda();
+        d.setNumeroCredito("23002");
+        d.setMonto(3300);
+        d.setEstado("liquidacion");
+        cuidador.agregarMemento(originador.guardarEstado());
+             System.out.println("El credito : " + originador.getDemanda().getEstado());
+         d = new Demanda();
+        d.setNumeroCredito("23002");
+        d.setMonto(3300);
+        d.setEstado("insolvencia");
+        cuidador.agregarMemento(originador.guardarEstado());
+             System.out.println("El credito : " + originador.getDemanda().getEstado());
         // Restauramos a un estado previo
-        originador.restaurarEstado(cuidador.obtenerMemento(1));
-        System.out.println("Estado restaurado: " + originador.getDemanda().getEstado());
+        originador.restaurarEstado(cuidador.obtenerMemento(2));
+        System.out.println("El credito se encuentra restaurado: " + originador.getDemanda().getEstado());
 
     }
 }

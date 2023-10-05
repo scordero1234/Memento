@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ec.fin.view;
+package ec.fin.init;
 
 import ec.fin.controller.DemandaController;
+import ec.fin.view.Resaltador;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel; 
 
@@ -17,7 +18,7 @@ DefaultTableModel tblModel = new DefaultTableModel();
 DemandaController dc = new DemandaController();
 Resaltador resaltador;
 int contador = 0;
-
+String resultadoString="Seleccione";
     /**
      * Creates new form VentanaPrincipal
      */
@@ -51,6 +52,8 @@ int contador = 0;
         jScrollPane1 = new javax.swing.JScrollPane();
         tblInformacion = new javax.swing.JTable();
         btnRestaurar = new javax.swing.JButton();
+        lblResultado = new javax.swing.JLabel();
+        lblTexto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,32 +104,43 @@ int contador = 0;
             }
         });
 
+        lblResultado.setText("A regresado al estado:");
+
+        lblTexto.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lblTexto.setForeground(new java.awt.Color(51, 204, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel6)
-                        .addGap(54, 54, 54)
-                        .addComponent(txtEstado))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel6)
+                                .addGap(54, 54, 54)
+                                .addComponent(txtEstado))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnRestaurar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel12)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblResultado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -159,7 +173,11 @@ int contador = 0;
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 122, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblResultado)
+                            .addComponent(lblTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 82, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -192,7 +210,7 @@ int contador = 0;
         String valor[] = cmbEstado.getSelectedItem().toString().split("-");
         int index= Integer.parseInt(valor[0].toString());
         JOptionPane.showMessageDialog(null,"Volvemos al estado: " +dc.restaurarEstado(index));
-        
+        resultadoString=dc.restaurarEstado(index);
         for(int i=0; i< tblInformacion.getRowCount();i++){ 
             
             if ( index==Integer.parseInt(tblInformacion.getValueAt(i, 0).toString())){
@@ -202,7 +220,7 @@ int contador = 0;
             }        
         } 
         
-        
+        lblTexto.setText(resultadoString);
     }//GEN-LAST:event_btnRestaurarActionPerformed
 
     /**
@@ -251,6 +269,8 @@ int contador = 0;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblResultado;
+    private javax.swing.JLabel lblTexto;
     private javax.swing.JTable tblInformacion;
     private javax.swing.JTextField txtEstado;
     // End of variables declaration//GEN-END:variables

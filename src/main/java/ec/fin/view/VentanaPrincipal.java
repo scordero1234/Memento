@@ -194,11 +194,14 @@ int contador = 0;
         JOptionPane.showMessageDialog(null,"Estado Restaurado: " +dc.restaurarEstado(index));
         
         for(int i=0; i< tblInformacion.getRowCount();i++){ 
+            
             if ( index==Integer.parseInt(tblInformacion.getValueAt(i, 0).toString())){
                resaltador.setFila(i);
-            }
-                   
-        }
+               tblInformacion.changeSelection(i,0, true, true);
+               tblInformacion.changeSelection(i,1, true, true);
+            }        
+        } 
+        
         
     }//GEN-LAST:event_btnRestaurarActionPerformed
 

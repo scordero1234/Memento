@@ -191,7 +191,7 @@ int contador = 0;
         // TODO add your handling code here:
         String valor[] = cmbEstado.getSelectedItem().toString().split("-");
         int index= Integer.parseInt(valor[0].toString());
-        JOptionPane.showMessageDialog(null,"Estado Restaurado: " +dc.restaurarEstado(index));
+        JOptionPane.showMessageDialog(null,"Volvemos al estado: " +dc.restaurarEstado(index));
         
         for(int i=0; i< tblInformacion.getRowCount();i++){ 
             

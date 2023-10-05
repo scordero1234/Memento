@@ -2,15 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ec.fin.memento;
+package ec.fin.model;
 
 /**
  *
  * @author s.corderoc
  */
-class Originador {
-    private Demanda demanda;
-    
+public class Originador {
+    private Demanda demanda; 
 
 
     public Memento guardarEstado() {
